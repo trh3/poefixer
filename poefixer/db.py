@@ -309,7 +309,7 @@ class PoeDb:
         for field in simple_fields:
             setattr(row, field, getattr(thing, field, None))
         if table is Item:
-            if "Jewel" in thing._data['typeLine']:
+            if "Cluster Jewel" in thing._data['typeLine']:
                 self.session.add(row)
         else:
             self.session.add(row)
