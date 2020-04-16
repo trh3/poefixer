@@ -269,7 +269,6 @@ class PoeDb:
             #if not keep_items:
             #    self._invalidate_stash_items(dbstash)
 
-            self.session.refresh(dbstash)
             self.logger.debug(
                 "Injecting %s items for stash: %s",
                 stash.api_item_count, stash.id)
