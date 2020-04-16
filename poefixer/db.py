@@ -268,6 +268,8 @@ class PoeDb:
         if with_items:
             # For now, it seems stashes are immutable anyway
             #if not keep_items:
+            self.session.flush()
+            self.session.refresh(dbstash)
             #    self._invalidate_stash_items(dbstash)
             self.logger.debug(
                 "Injecting %s items for stash: %s",
