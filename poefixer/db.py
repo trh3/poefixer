@@ -262,8 +262,8 @@ class PoeDb:
         mark all items associated with this insert as inactive.
         """
 
-       # dbstash = self._insert_or_update_row(
-        #    Stash, stash, self.stash_simple_fields)
+        dbstash = self._insert_or_update_row(
+            Stash, stash, self.stash_simple_fields)
 
         if with_items:
             # For now, it seems stashes are immutable anyway
@@ -312,8 +312,7 @@ class PoeDb:
             if "Cluster Jewel" in thing._data["typeLine"] and "note" in thing._data.keys():
                 print("Got A Cluster Jewel")
                 self.session.add(row)
-        else:
-            self.session.add(row)
+
         return row
 
     @property
