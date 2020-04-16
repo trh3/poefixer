@@ -310,8 +310,6 @@ class PoeDb:
             if "Cluster Jewel" in thing._data["typeLine"]:
                 print("Got A Cluster Jewel")
                 self.session.add(row)
-        else:
-            self.session.add(row)
         return row
 
     @property
