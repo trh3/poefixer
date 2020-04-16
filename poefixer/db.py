@@ -310,8 +310,6 @@ class PoeDb:
         if table is Item:
             if "Jewel" in thing._data['typeLine']:
                 self.session.add(row)
-        elif table is Stash:
-            logging.info("Skippin Stash")
         else:
             self.session.add(row)
         return row
