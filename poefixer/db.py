@@ -307,6 +307,7 @@ class PoeDb:
         for field in simple_fields:
             setattr(row, field, getattr(thing, field, None))
         if table is Item:
+            if "Ring" in thing._data['typeLine']:
                 logging.info(thing._data['typeLine'])
                 logging.info(str(thing._data.keys()))
                 print("Got A Cluster Jewel")
