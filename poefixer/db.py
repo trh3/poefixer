@@ -312,8 +312,6 @@ class PoeDb:
                 logging.info(str(thing._data.keys()))
                 print("Got A Cluster Jewel")
                 self.session.add(row)
-        else:
-            self.session.add(row)
         return row
 
     @property
