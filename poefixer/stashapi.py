@@ -145,7 +145,7 @@ class ApiItem(PoeApiData):
         "y"]
 
     required_fields = [
-        "category", "id", "h", "w", "x", "y", "frameType", "icon",
+         "id", "h", "w", "x", "y", "frameType", "icon",
         "identified", "ilvl", "league", "name", "typeLine", "verified"]
 
     def _clean_markup(self, value):
