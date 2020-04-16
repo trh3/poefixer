@@ -255,7 +255,6 @@ class PoeDb:
     def insert_api_stash(self, stash, with_items=False, keep_items=False):
         """
         Given a PoeApi.ApiStash, insert its data into the Item table
-
         An optional `with_items` boolean may be set to true in order
         to recurse into the items in the given stash and insert/update
         them as well. The `keep_items` flag tells the insert to not
@@ -268,9 +267,9 @@ class PoeDb:
         if with_items:
             # For now, it seems stashes are immutable anyway
             #if not keep_items:
+            #    self._invalidate_stash_items(dbstash)
             self.session.flush()
             self.session.refresh(dbstash)
-            #    self._invalidate_stash_items(dbstash)
             self.logger.debug(
                 "Injecting %s items for stash: %s",
                 stash.api_item_count, stash.id)
@@ -309,11 +308,12 @@ class PoeDb:
         for field in simple_fields:
             setattr(row, field, getattr(thing, field, None))
         if table is Item:
-            if "Ring" in thing._data['typeLine']:
-                logging.info(thing._data['typeLine'])
-                logging.info(str(thing._data.keys()))
-                print("Got A Cluster Jewel")
+            if "Jewel" in thing._data['typeLine']:
                 self.session.add(row)
+        elif table is Stash:
+            logging.info("Skippin Stash")
+        else:
+            self.session.add(row)
         return row
 
     @property
