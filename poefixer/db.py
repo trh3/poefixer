@@ -269,8 +269,6 @@ class PoeDb:
             # For now, it seems stashes are immutable anyway
             #if not keep_items:
             #    self._invalidate_stash_items(dbstash)
-            self.session.flush()
-            self.session.refresh(dbstash)
             self.logger.debug(
                 "Injecting %s items for stash: %s",
                 stash.api_item_count, stash.id)
@@ -312,7 +310,8 @@ class PoeDb:
             if "Cluster Jewel" in thing._data["typeLine"]:
                 print("Got A Cluster Jewel")
                 self.session.add(row)
-
+        else:
+            self.session.add(row)
         return row
 
     @property
