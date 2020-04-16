@@ -308,7 +308,7 @@ class PoeDb:
 
         for field in simple_fields:
             setattr(row, field, getattr(thing, field, None))
-        if Table is Item:
+        if table is Item:
             if "Cluster Jewel" in thing.lineType:
                 self.session.add(row)
         else:
