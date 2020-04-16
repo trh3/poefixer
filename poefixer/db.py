@@ -287,10 +287,11 @@ class PoeDb:
     def _insert_or_update_row(self, table, thing, simple_fields, stash=None):
         now = int(time.time())
         query = self.session.query(table)
-        if thing.id:
-            existing = query.filter(table.api_id == thing.id).one_or_none()
-        else:
-            existing = None
+        with self.session.no_autoflush:
+            if thing.id:
+                existing = query.filter(table.api_id == thing.id).one_or_none()
+            else:
+                existing = None
         if existing:
             row = existing
         else:
